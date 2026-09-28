@@ -1,5 +1,5 @@
 from fastapi import HTTPException, status
-from sqlalchemy.orm import Session, selectinload
+from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import select, func
 from .schemas import NewBlogReq
 from .models import Blog
@@ -11,11 +11,12 @@ def get_all_blog_controller (page:int, limit:int, db:Session):
 
     offset = limit * (page - 1)
 
-    stmt = select(Blog).options(selectinload(Blog.writer)).order_by(Blog.created_at.desc()).offset(offset).limit(limit)
+    stmt = select(Blog).options(joinedload(Blog.writer))    
+    total_stmt = select(func.count(Blog.id)).select_from(stmt.subquery())
+    total = db.scalar(total_stmt) or 0
+    
+    stmt= stmt.order_by(Blog.created_at.desc()).offset(offset).limit(limit)
     blogs = db.scalars(stmt).all()
-
-    total_stmt = select(func.count(Blog.id))
-    total = db.scalar(total_stmt)
 
     return{
         "data":blogs,

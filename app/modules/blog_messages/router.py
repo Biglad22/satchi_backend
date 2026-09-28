@@ -5,11 +5,11 @@ from .controllers import add_new_blog, get_all_blog_controller, get_blog_by_id_c
 
 Blog_messages_router = APIRouter(prefix="/blogs")
 
-@Blog_messages_router.get("/", status_code=status.HTTP_200_OK, response_model=AllBlogResponse)
+@Blog_messages_router.get("", status_code=status.HTTP_200_OK, response_model=AllBlogResponse)
 def get_all_blogs(page:int=Query(1, ge=1), limit:int=Query(10, ge=1), db=Depends(get_DB)):
     return get_all_blog_controller(page=page, limit=limit, db=db)
 
-@Blog_messages_router.post("/", status_code=status.HTTP_201_CREATED, response_model=BlogOut)
+@Blog_messages_router.post("", status_code=status.HTTP_201_CREATED, response_model=BlogOut)
 def create_blog(req:NewBlogReq, db=Depends(get_DB)):
     return add_new_blog(req, db)
 

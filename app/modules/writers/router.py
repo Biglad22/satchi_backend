@@ -7,7 +7,7 @@ from .controllers import get_writer as get_writer_controller, get_blogs_by_write
 
 WriterRouter = APIRouter(prefix="/writers")
 
-@WriterRouter.get("/", status_code=status.HTTP_200_OK)
+@WriterRouter.get("", status_code=status.HTTP_200_OK)
 def get_all_writers(limit:int=Query(ge=1), page:int=Query(ge=1), db=Depends(get_DB)):
     return get_all_writers_controller(db=db, limit=limit, page=page)
 

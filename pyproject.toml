@@ -1,0 +1,27 @@
+[project]
+name = "satchi-backend"
+version = "0.1.0"
+description = "Satchi Backend Service"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "uvicorn",
+    "fastapi[standard]",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "python-dotenv",
+    "python-jose[cryptography]",
+    "eth-account",
+    "alembic",
+    "passlib[argon2]",
+    "eth-utils",
+    "sendgrid",
+    "redis",
+    "privy-client",
+]
+
+[tool.fastapi]
+entrypoint = "app.main:app"
+
+[tool.uv]
+package = false

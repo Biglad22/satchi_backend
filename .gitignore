@@ -1,0 +1,19 @@
+# Python Stuff
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# IDE files
+.vscode/
+.idea/
+
+# Mac / OS
+.DS_Store

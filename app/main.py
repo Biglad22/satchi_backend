@@ -18,7 +18,7 @@ allowed_origins = [
     "http://localhost:8000",
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://satchipay.netlify.app/"
+    "https://satchipay.netlify.app"
 ]
 
 app.add_middleware(
